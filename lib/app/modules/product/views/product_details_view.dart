@@ -34,6 +34,7 @@ class ProductDetailsView extends StatelessWidget {
                 Get.back();
               },
             ),
+            SizedBox(height: 10),
             Text(product.name, style: TextStyle(fontSize: 24)),
             SizedBox(height: 10),
             Text('\$${product.price.toString()}', style: TextStyle(fontSize: 24)),
@@ -42,7 +43,41 @@ class ProductDetailsView extends StatelessWidget {
               child: Text('Add to Cart'),
               onPressed: () {
                 cartController.addToCart(product);
-                Get.snackbar('Added to Cart', '${product.name} added to your cart');
+                Get.snackbar(
+                  'Added to Cart',
+                  '${product.name} added to your cart',
+                  snackPosition: SnackPosition.BOTTOM,
+                  duration: Duration(seconds: 2),
+                  backgroundColor: Colors.green,
+                  colorText: Colors.white,
+                );
+              },
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              child: Text("More Actions"),
+              onPressed: () {
+                Get.bottomSheet(Container(
+                  color: Colors.white,
+                  child: Wrap(
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.shopping_cart),
+                        title: Text('View Cart'),
+                        onTap: () {
+                          Get.toNamed('/cart');
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.payment),
+                        title: Text('Proceed to Checkout'),
+                        onTap: () {
+                          Get.toNamed('/checkout');
+                        },
+                      ),
+                    ],
+                  ),
+                ));
               },
             ),
           ],
