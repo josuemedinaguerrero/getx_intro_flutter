@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_intro/app/modules/product/controllers/product_controller.dart';
+import 'package:getx_intro/app/modules/product/views/product_details_view.dart';
 
 class ProductView extends StatelessWidget {
   final ProductController productController = Get.put(ProductController());
+
+  ProductView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,10 @@ class ProductView extends StatelessWidget {
             return ListTile(
               title: Text(product.name),
               subtitle: Text('\$${product.price.toString()}'),
-              onTap: () => Get.toNamed('/product-details', arguments: product),
+              onTap: () {
+                // Get.toNamed('/productDetails', arguments: product);
+                Get.to(ProductDetailsView(), arguments: product);
+              },
             );
           },
         );

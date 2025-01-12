@@ -6,6 +6,8 @@ import 'package:getx_intro/app/modules/product/models/product_model.dart';
 class ProductDetailsView extends StatelessWidget {
   final CartController cartController = Get.find<CartController>();
 
+  ProductDetailsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ProductModel product = Get.arguments;
@@ -17,7 +19,7 @@ class ProductDetailsView extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              Get.toNamed('/cart');
+              Get.offAllNamed('/cart');
             },
           )
         ],
@@ -26,6 +28,12 @@ class ProductDetailsView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ElevatedButton(
+              child: Text('Go Back'),
+              onPressed: () {
+                Get.back();
+              },
+            ),
             Text(product.name, style: TextStyle(fontSize: 24)),
             SizedBox(height: 10),
             Text('\$${product.price.toString()}', style: TextStyle(fontSize: 24)),
