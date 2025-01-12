@@ -19,7 +19,7 @@ class ProductDetailsView extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              Get.offAllNamed('/cart');
+              Get.toNamed('/cart');
             },
           )
         ],

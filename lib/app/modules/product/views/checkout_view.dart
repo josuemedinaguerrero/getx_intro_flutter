@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_intro/app/modules/product/controllers/cart_controller.dart';
 
 class CheckoutView extends StatelessWidget {
   const CheckoutView({super.key});
@@ -17,6 +18,19 @@ class CheckoutView extends StatelessWidget {
             ElevatedButton(
               child: Text('Back to Home'),
               onPressed: () {
+                final CartController cartController = Get.find<CartController>();
+
+                cartController.cartService.clearCart();
+
+                Get.snackbar(
+                  'Order completed',
+                  'Your order has been placed successfully!',
+                  snackPosition: SnackPosition.BOTTOM,
+                  duration: Duration(seconds: 3),
+                  backgroundColor: Colors.blue,
+                  colorText: Colors.white,
+                );
+
                 Get.offAllNamed('/product');
               },
             ),
